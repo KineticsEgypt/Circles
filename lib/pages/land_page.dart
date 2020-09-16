@@ -1,25 +1,66 @@
-import 'package:circles_design/widgets/backgrounds/arc_bottom.dart';
-import 'package:circles_design/widgets/backgrounds/arc_top.dart';
-import 'package:circles_design/widgets/c_icon_button.dart';
+import 'package:circles/app_style/colors.dart';
+import 'package:circles/app_style/text_style.dart';
+import 'package:circles/widgets/buttons/c_flat_button.dart';
+import 'file:///C:/Users/maxas/AndroidStudioProjects/Circles/lib/widgets/buttons/c_button.dart';
 import 'package:flutter/material.dart';
 class LandPage extends StatelessWidget {
+  static final String id = "/land-page";
+  double _width;
+  double _height;
   @override
   Widget build(BuildContext context) {
+    _height = MediaQuery.of(context).size.height;
+    _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
+      body: Container(
+        height: _height,
+        width: _width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/land_page_background.png"),
+            fit: BoxFit.cover
+          )
+        ),
+        child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
-            CIconButton(),
-            Align(
-              alignment: Alignment.bottomRight,
+            SizedBox(
+              height: _height/8,
+            ),
+            Center(
+              child: Image(
+                  width: _width/3,
+                  image: AssetImage("assets/images/logo.png"),
+                  fit: BoxFit.contain,
+              ),
+            ),
+            Text(
+                "Party in luxuriously",
+              style:CirclesTextStyles.header5,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: _height/2.2,
+            ),
+            Center(
               child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: CustomPaint(
-                  painter: ArcBottom(
-                    radius: MediaQuery.of(context).size.height/2.4,
-                  ),
+                width: _width/1.2,
+                child: CButton(
+                  text: "Get started",
+                  onTap: (){},
                 ),
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Center(
+              child: SizedBox(
+                width: _width/1.2,
+                child: CFlatButton(
+                    onTap: (){},
+                    text:"Already have an account"
+                )
               ),
             ),
           ],

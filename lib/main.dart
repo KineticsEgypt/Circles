@@ -1,4 +1,7 @@
-import 'package:circles_design/pages/land_page.dart';
+import 'package:circles/app_style/colors.dart';
+import 'package:circles/pages/home.dart';
+import 'package:circles/pages/land_page.dart';
+import 'package:circles/pages/splach_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +15,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Circles',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primaryColor: Colors.grey,
+        accentColor: CirclesColors.yellow,
         scaffoldBackgroundColor: Colors.black,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        brightness: Brightness.dark
       ),
-      home: LandPage(),
+      initialRoute: LandPage.id,
+      routes: {
+        Home.id: (_) => Home(),
+        LandPage.id: (_) => LandPage(),
+        SplashPage.id: (_) => SplashPage(),
+      },
     );
   }
 }
