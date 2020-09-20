@@ -1,5 +1,5 @@
 import 'package:circles/app_style/colors.dart';
-import 'package:circles/pages/home.dart';
+import 'file:///C:/Users/maxas/AndroidStudioProjects/Circles/lib/pages/home_pages/home.dart';
 import 'package:circles/pages/land_page.dart';
 import 'package:circles/pages/splach_page.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,4 @@
+import 'package:circles/app_style/text_style.dart';
 import 'package:flutter/material.dart';
 class CFlatButton extends StatelessWidget {
 
@@ -21,6 +22,7 @@ class CFlatButton extends StatelessWidget {
         style: TextStyle(
           fontSize: 16,
         ),
+        textScaleFactor: CirclesTextStyles.getScaleFactor(context),
         textAlign: TextAlign.center,
       ),
     );

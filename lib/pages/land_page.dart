@@ -1,8 +1,10 @@
 import 'package:circles/app_style/colors.dart';
 import 'package:circles/app_style/text_style.dart';
 import 'package:circles/widgets/buttons/c_flat_button.dart';
-import 'file:///C:/Users/maxas/AndroidStudioProjects/Circles/lib/widgets/buttons/c_button.dart';
+import '../widgets/buttons/c_button.dart';
 import 'package:flutter/material.dart';
+
+import 'home_pages/home.dart';
 class LandPage extends StatelessWidget {
   static final String id = "/land-page";
   double _width;
@@ -18,14 +20,14 @@ class LandPage extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/land_page_background.png"),
-            fit: BoxFit.cover
+            fit: BoxFit.cover,
           )
         ),
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: [
             SizedBox(
-              height: _height/8,
+              height: _height/10,
             ),
             Center(
               child: Image(
@@ -37,6 +39,7 @@ class LandPage extends StatelessWidget {
             Text(
                 "Party in luxuriously",
               style:CirclesTextStyles.header5,
+              textScaleFactor: CirclesTextStyles.getScaleFactor(context),
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -47,7 +50,9 @@ class LandPage extends StatelessWidget {
                 width: _width/1.2,
                 child: CButton(
                   text: "Get started",
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.of(context).pushNamed(Home.id);
+                  },
                 ),
               ),
             ),

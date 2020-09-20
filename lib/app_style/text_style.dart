@@ -1,6 +1,14 @@
 import 'package:circles/app_style/colors.dart';
 import 'package:flutter/material.dart';
 class CirclesTextStyles {
+
+  static final TextStyle header4 = TextStyle(
+      inherit: true,
+      fontSize: 24,
+      color: Colors.white,
+      fontFamily: "Gothic"
+  );
+
   static final TextStyle header5 = TextStyle(
     inherit: true,
     fontSize: 18,
@@ -34,7 +42,8 @@ class CirclesTextStyles {
       fontSize: 12,
       fontWeight: FontWeight.bold,
       color: Colors.white,
-      fontFamily: "Gothic"
+      fontFamily: "Gothic",
+
   );
 
   static final TextStyle subTitle2 = TextStyle(
@@ -51,4 +60,10 @@ class CirclesTextStyles {
       color: CirclesColors.yellow,
       fontFamily: "Gothic"
   );
+
+  static double getScaleFactor(BuildContext context){
+    return MediaQuery.of(context).orientation == Orientation.portrait
+        ?  MediaQuery.of(context).size.width/(360)
+        : MediaQuery.of(context).size.height/(360);
+  }
 }

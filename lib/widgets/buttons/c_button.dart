@@ -1,3 +1,4 @@
+import 'package:circles/app_style/text_style.dart';
 import 'package:flutter/material.dart';
 class CButton extends StatelessWidget {
   final Color color;
@@ -27,6 +28,7 @@ class CButton extends StatelessWidget {
             color: color.computeLuminance() > 0.5
                 ? Colors.black : Colors.white
           ),
+          textScaleFactor: CirclesTextStyles.getScaleFactor(context),
         ),
         onPressed: onTap
     );

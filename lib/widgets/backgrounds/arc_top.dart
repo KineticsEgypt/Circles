@@ -18,7 +18,7 @@ class ArcTop extends CustomPainter {
       center: new Offset(-size.width/4 ,size.height/6,),
       radius: radius,
     );
-    paint.color = Colors.white12;
+    paint.color = color;
     paint.style = PaintingStyle.fill;
     canvas.drawArc(rect,0,360, true, paint);
   }
