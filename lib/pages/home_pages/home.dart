@@ -23,6 +23,7 @@ class _HomeState extends State<Home> {
     return Stack(
       children: [
         Scaffold(
+          drawerEdgeDragWidth: 0.0,
           key: _scaffoldKey,
           body: SafeArea(
             child: Stack(
@@ -74,31 +75,35 @@ class _HomeState extends State<Home> {
           ),
         ),
         // menu button
-        Align(
-          alignment: Alignment.topLeft,
-          child: CIconButton(
-            startIconData: Icons.menu,
-            endIconData: Icons.close,
-            onOpen: (){
-              _scaffoldKey.currentState.openDrawer();
-            },
-            onClose: (){
-              Navigator.of(context).pop();
-            },
+        SafeArea(
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: CIconButton(
+              startIconData: Icons.menu,
+              endIconData: Icons.close,
+              onOpen: (){
+                _scaffoldKey.currentState.openDrawer();
+              },
+              onClose: (){
+                Navigator.of(context).pop();
+              },
+            ),
           ),
         ),
         // search button
-        Align(
-          alignment: Alignment.topRight,
-          child: CIconButton(
-            startIconData: Icons.search,
-            endIconData: Icons.close,
-            onOpen: (){
-              _scaffoldKey.currentState.openEndDrawer();
-            },
-            onClose: (){
-              Navigator.of(context).pop();
-            },
+        SafeArea(
+          child: Align(
+            alignment: Alignment.topRight,
+            child: CIconButton(
+              startIconData: Icons.search,
+              endIconData: Icons.close,
+              onOpen: (){
+                _scaffoldKey.currentState.openEndDrawer();
+              },
+              onClose: (){
+                Navigator.of(context).pop();
+              },
+            ),
           ),
         ),
       ],
