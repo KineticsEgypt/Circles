@@ -9,6 +9,7 @@ class PlacesList extends StatefulWidget {
 
 class _PlacesListState extends State<PlacesList> {
   bool testFavorite = false;
+  int _viewItemIndex = -1;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -16,7 +17,26 @@ class _PlacesListState extends State<PlacesList> {
         itemBuilder: (listContext,itemIndex){
           return PlaceItem(
             placeImage: "assets/images/test_image.png",
+            index: _viewItemIndex == itemIndex ? 1 : 0,
+            onIndexChanged: (index){
+              print(index);
+              if(index== 1){
+                _viewItemIndex = itemIndex;
+                print(_viewItemIndex);
+                setState(() {});
+              }
+            },
             badgesImages: [
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
+              "assets/images/test_image.png",
               "assets/images/test_image.png",
               "assets/images/test_image.png",
               "assets/images/test_image.png",

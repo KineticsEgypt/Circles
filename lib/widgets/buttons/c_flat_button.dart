@@ -15,12 +15,14 @@ class CFlatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  FlatButton(
+    return  MaterialButton(
       onPressed: onTap,
       child: Text(
         text ?? "",
         style: TextStyle(
-          fontSize: 16,
+          fontSize: 18,
+          fontFamily: "Gothic",
+          color: textColor ?? Colors.white
         ),
         textScaleFactor: CirclesTextStyles.getScaleFactor(context),
         textAlign: TextAlign.center,

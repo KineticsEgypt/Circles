@@ -4,30 +4,40 @@ class CirclesTextStyles {
 
   static final TextStyle header4 = TextStyle(
       inherit: true,
-      fontSize: 24,
+      fontSize: 28,
       color: Colors.white,
       fontFamily: "Gothic"
   );
 
   static final TextStyle header5 = TextStyle(
     inherit: true,
-    fontSize: 18,
+    fontSize: 24,
     color: Colors.white,
     fontFamily: "Gothic"
   );
 
   static final TextStyle header6 = TextStyle(
       inherit: true,
-      fontSize: 16,
+      fontSize: 18,
       color: Colors.white,
       fontFamily: "Gothic"
   );
 
-  static final TextStyle acc = TextStyle(
+
+
+  static final TextStyle header6Black = TextStyle(
+      inherit: true,
+      fontSize: 18,
+      color: Colors.black,
+      fontFamily: "Gothic"
+  );
+
+  static final TextStyle subTitleGolden = TextStyle(
       inherit: true,
       fontSize: 16,
-      color: Colors.white,
-      fontFamily: "Gothic"
+      color: CirclesColors.yellow,
+      fontFamily: "Gothic",
+    fontWeight: FontWeight.bold,
   );
 
   static final TextStyle subTitle1 = TextStyle(
@@ -63,7 +73,9 @@ class CirclesTextStyles {
 
   static double getScaleFactor(BuildContext context){
     return MediaQuery.of(context).orientation == Orientation.portrait
-        ?  MediaQuery.of(context).size.width/(360)
-        : MediaQuery.of(context).size.height/(360);
+        ?  MediaQuery.of(context).size.width/(360) > 1.5
+          ? 1.5 : MediaQuery.of(context).size.width/(360)
+        : MediaQuery.of(context).size.height/(360) > 1.5
+          ? 1.5 : MediaQuery.of(context).size.height/(360);
   }
 }

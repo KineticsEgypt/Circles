@@ -1,10 +1,11 @@
+import 'package:circles/app_style/colors.dart';
 import 'package:flutter/material.dart';
 
 class ArcTop extends CustomPainter {
   final Color color;
   final double radius;
   ArcTop({
-    this.color = Colors.white38,
+    this.color = CirclesColors.grey,
     this.radius = 100
   });
 

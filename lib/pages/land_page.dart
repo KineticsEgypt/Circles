@@ -38,7 +38,7 @@ class LandPage extends StatelessWidget {
             ),
             Text(
                 "Party in luxuriously",
-              style:CirclesTextStyles.header5,
+              style:CirclesTextStyles.header6,
               textScaleFactor: CirclesTextStyles.getScaleFactor(context),
               textAlign: TextAlign.center,
             ),

@@ -19,39 +19,34 @@ class _ReserveButtonState extends State<ReserveButton> {
     return Draggable(
       data: "some data for draggable",
       child: SizedBox(
-        height: 84,
-        child: Center(
-          child: SizedBox(
-            height: 40 * .9,
-            width: 130 * .9,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                FlareActor(
-                    "assets/flares/waves.flr",
-                    alignment:Alignment.center,
-                    fit:BoxFit.contain,
-                ),
-                Text(
-                    "Reserve With Circle",
-                  style: TextStyle(
-                      inherit: true,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontFamily: "Gothic",
-                      shadows: [
-                        Shadow(
-                          blurRadius: 5.0,
-                          color: Colors.black,
-                        ),
-                      ]
-                  ),
-
-                ),
-              ],
+        height: 40 * .9,
+        width: 130 * .9,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            FlareActor(
+                "assets/flares/waves.flr",
+                alignment:Alignment.center,
+                fit:BoxFit.contain,
             ),
-          ),
+            Text(
+                "Reserve With Circle",
+              style: TextStyle(
+                  inherit: true,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontFamily: "Gothic",
+                  shadows: [
+                    Shadow(
+                      blurRadius: 5.0,
+                      color: Colors.black,
+                    ),
+                  ]
+              ),
+
+            ),
+          ],
         ),
       ),
       feedback: Container(

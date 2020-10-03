@@ -1,13 +1,16 @@
-import 'package:circles/app_style/colors.dart';
-import 'package:circles/app_style/text_style.dart';
+import 'package:circles/controlers/providers/page_index_provider.dart';
+import 'package:circles/pages/home_pages/cinema_page/cinema_page.dart';
+import 'package:circles/pages/home_pages/home_menu.dart';
+import 'package:circles/pages/home_pages/home_search.dart';
 import 'package:circles/pages/home_pages/place_page/place_page.dart';
 import 'package:circles/widgets/backgrounds/arc_bottom.dart';
-import 'package:circles/widgets/circle_item.dart';
-import 'package:circles/widgets/place_item.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:circles/widgets/backgrounds/arc_top.dart';
+import 'package:provider/provider.dart';
 import '../../widgets/buttons/c_icon_button.dart';
 import 'package:flutter/material.dart';
+
+import 'profile_page/profile_page.dart';
+
 class Home extends StatefulWidget {
   static final String id = "/home";
 
@@ -18,95 +21,113 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_){
+          setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          drawerEdgeDragWidth: 0.0,
-          key: _scaffoldKey,
-          body: SafeArea(
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: CustomPaint(
-                      painter: ArcBottom(
-                        radius: MediaQuery.of(context).size.height/2.4,
+    PageIndexProvider _pageIndexProvider = Provider.of<PageIndexProvider>(context);
+    return WillPopScope(
+      onWillPop: () async {
+        if(_pageIndexProvider.menuIsOpen
+            || _pageIndexProvider.searchIsOpen ){
+          print("back from WillPopScope");
+          _pageIndexProvider.resetMenus();
+          return false;
+        }
+        return true;
+      },
+      child: Stack(
+        children: [
+          Scaffold(
+            endDrawerEnableOpenDragGesture: false,
+            drawerEnableOpenDragGesture: false,
+            drawerEdgeDragWidth: 0.0,
+            key: _scaffoldKey,
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: _pageIndexProvider.pageIndex == 0
+                        ? Alignment.topLeft
+                        : Alignment.bottomRight ,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      child: CustomPaint(
+                        painter: _pageIndexProvider.pageIndex == 0
+                          ? ArcTop(radius: MediaQuery.of(context).size.height/2.4,)
+                          : ArcBottom(radius: MediaQuery.of(context).size.height/2.4,),
                       ),
                     ),
                   ),
-                ),
-                [
-                  PlacesPage()
-                ].elementAt(0),
+                  [
+                    ProfilePage(),
+                    PlacesPage(),
+                    CinemaPage()
+                  ].elementAt(_pageIndexProvider.pageIndex),
+                  HomeSearch(),
+                  HomeMenu()
+                ],
+              ),
+            ),
+          ),
 
-              ],
-            ),
-          ),
-          drawer: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Drawer(
-              child: ListView(
-                children: [
-                  ListTile(title: Text("some title"),),
-                  ListTile(title: Text("some title"),),
-                  ListTile(title: Text("some title"),),
-                  ListTile(title: Text("some title"),),
-                ],
+          // menu button
+          SafeArea(
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 800),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return RotationTransition(
+                    child: FadeTransition(child: child,opacity: animation,),
+                    turns: animation,
+                  );
+                },
+                child: CIconButton(
+                  key: ValueKey(_pageIndexProvider.menuIsOpen),
+                  iconData:  _pageIndexProvider.menuIsOpen
+                      ? Icons.close : Icons.menu,
+                  onTap: (){
+                    _pageIndexProvider.menuIsOpen = !_pageIndexProvider.menuIsOpen;
+                  },
+                ),
               ),
             ),
           ),
-          endDrawer: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Drawer(
-              child: ListView(
-                children: [
-                  ListTile(title: Text("some title"),),
-                  ListTile(title: Text("some title"),),
-                  ListTile(title: Text("some title"),),
-                  ListTile(title: Text("some title"),),
-                ],
+          // search button
+          SafeArea(
+            child: Align(
+              alignment: Alignment.topRight,
+              child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 800),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return RotationTransition(
+                    child: FadeTransition(child: child,opacity: animation,),
+                    turns: animation,
+                  );
+                },
+                child: CIconButton(
+                  key: ValueKey(_pageIndexProvider.searchIsOpen),
+                  iconData:  _pageIndexProvider.searchIsOpen
+                      ? Icons.close : Icons.search,
+                  onTap: (){
+                    _pageIndexProvider.searchIsOpen = !_pageIndexProvider.searchIsOpen;
+                  },
+                ),
               ),
             ),
           ),
-        ),
-        // menu button
-        SafeArea(
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: CIconButton(
-              startIconData: Icons.menu,
-              endIconData: Icons.close,
-              onOpen: (){
-                _scaffoldKey.currentState.openDrawer();
-              },
-              onClose: (){
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-        ),
-        // search button
-        SafeArea(
-          child: Align(
-            alignment: Alignment.topRight,
-            child: CIconButton(
-              startIconData: Icons.search,
-              endIconData: Icons.close,
-              onOpen: (){
-                _scaffoldKey.currentState.openEndDrawer();
-              },
-              onClose: (){
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
