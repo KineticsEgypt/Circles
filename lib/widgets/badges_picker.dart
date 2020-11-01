@@ -74,7 +74,9 @@ class _BadgesPickerState extends State<BadgesPicker> {
                             ),
                             child: Image(
                               image: AssetImage(widget.badges[index].imagePath),
-                              color: Colors.black,
+                              color: selectedBadges.contains(widget.badges[index].id)
+                                  ? Colors.black
+                                  : Colors.white,
                             ),
                           ),
                         ),

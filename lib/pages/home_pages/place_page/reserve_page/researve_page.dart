@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
-import 'package:table_calendar/table_calendar.dart';
+
 
 import '../circles_list.dart';
 class ReservePage extends StatefulWidget {
@@ -22,22 +22,8 @@ class ReservePage extends StatefulWidget {
 }
 
 class _ReservePageState extends State<ReservePage> {
-
-  CalendarController _calendarController;
   String _selectedCircleId;
   Size _pageSize;
-  @override
-  void initState() {
-    super.initState();
-    _calendarController = CalendarController();
-  }
-
-  @override
-  void dispose() {
-    _calendarController.dispose();
-    super.dispose();
-  }
-
 
   @override
   Widget build(BuildContext context) {

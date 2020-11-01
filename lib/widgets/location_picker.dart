@@ -1,6 +1,6 @@
 import 'package:circles/app_style/colors.dart';
 import 'package:circles/app_style/text_style.dart';
-import 'package:circles/models/Location.dart';
+import 'package:circles/models/location.dart';
 import 'package:flutter/material.dart';
 class LocationsPicker extends StatefulWidget {
 
@@ -47,7 +47,7 @@ class _LocationsPickerState extends State<LocationsPicker> {
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
             crossAxisCount: widget.seeMore ? 5 :2,
-            childAspectRatio: widget.seeMore ? .25 : .2,
+            childAspectRatio: widget.seeMore ? .35 : .25,
             scrollDirection: Axis.horizontal,
             children: List.generate(
                 widget.locations.length, (index) {
@@ -62,30 +62,33 @@ class _LocationsPickerState extends State<LocationsPicker> {
                       widget.onSelect(selectedBadges);
                       setState(() {});
                     },
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 500),
-                      decoration: BoxDecoration(
-                          color:  selectedBadges.contains(widget.locations[index].id)
-                              ? CirclesColors.yellow
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height)
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 2),
-                        child: Text(
-                          widget.locations[index].name,
-                          style: TextStyle(
-                            inherit: true,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: selectedBadges.contains(widget.locations[index].id)
-                                ? CirclesColors.lightGrey
-                                : Colors.white,
-                            fontFamily: "Gothic",
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        decoration: BoxDecoration(
+                            color:  selectedBadges.contains(widget.locations[index].id)
+                                ? CirclesColors.yellow
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height)
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 6),
+                          child: Text(
+                            widget.locations[index].name,
+                            style: TextStyle(
+                              inherit: true,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: selectedBadges.contains(widget.locations[index].id)
+                                  ? CirclesColors.lightGrey
+                                  : Colors.white,
+                              fontFamily: "Gothic",
+                            ),
+                            textScaleFactor: CirclesTextStyles.getScaleFactor(context),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
                           ),
-                          textScaleFactor: CirclesTextStyles.getScaleFactor(context),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),

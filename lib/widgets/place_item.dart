@@ -72,103 +72,133 @@ class _PlaceItemState extends State<PlaceItem> with SingleTickerProviderStateMix
                     onPressed: (){
                       Navigator.of(context).pushNamed(PlaceDetailsPage.id);
                     },
-                    child: Container(
-                      height: 108,
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.all(8),
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          color:CirclesColors.grey,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(.1),
-                                spreadRadius: 2
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
+                    child: Stack(
+                      alignment: Alignment.centerRight,
+                      children: [
+                        Container(
+                          height: 108,
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.all(8),
+                          padding: EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color:CirclesColors.grey,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(.1),
+                                    spreadRadius: 2
+                                )
+                              ]
+                          ),
+                          child: Stack(
+                            alignment: Alignment.centerRight,
                             children: [
-                              Expanded(
-                                child: Text(
-                                  "Place Name",
-                                  style: CirclesTextStyles.header4,
-                                  textScaleFactor: CirclesTextStyles.getScaleFactor(context) > 1.3
-                                      ? 1.3
-                                      : CirclesTextStyles.getScaleFactor(context),
-                                ),
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: IconButton(
-                                      icon: AnimatedSwitcher(
-                                        duration: Duration(milliseconds: 500),
-                                        child: Icon(
-                                          widget.isFavorite
-                                              ? Icons.favorite
-                                              : Icons.favorite_border,
-                                          key: ValueKey<bool>(widget.isFavorite),
-                                          color: CirclesColors.red,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "Place Name",
+                                          style: CirclesTextStyles.header5,
+                                          textScaleFactor: CirclesTextStyles.getScaleFactor(context) > 1.3
+                                              ? 1.3
+                                              : CirclesTextStyles.getScaleFactor(context),
                                         ),
                                       ),
-                                      onPressed: widget.onFavoriteTap
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(100),
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: IconButton(
+                                              icon: AnimatedSwitcher(
+                                                duration: Duration(milliseconds: 500),
+                                                child: Icon(
+                                                  widget.isFavorite
+                                                      ? Icons.favorite
+                                                      : Icons.favorite_border,
+                                                  key: ValueKey<bool>(widget.isFavorite),
+                                                  color: CirclesColors.red,
+                                                ),
+                                              ),
+                                              onPressed: widget.onFavoriteTap
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 30,
+                                    child: Row(
+                                      children: List.generate(
+                                          widget.badgesImages.length >
+                                          MediaQuery.of(context).size.width ~/1.8 ~/32
+                                              ? MediaQuery.of(context).size.width ~/1.8 ~/32 +1
+                                              : widget.badgesImages.length,
+                                              (index) {
+                                                int hidedItems = MediaQuery.of(context).size.width ~/1.8 ~/32;
+                                            if(index == hidedItems)
+                                              return Container(
+                                                padding: EdgeInsets.all(4),
+                                                decoration: BoxDecoration(
+                                                  color: CirclesColors.yellow,
+                                                  borderRadius: BorderRadius.circular(8),
+                                                ),
+                                                child: Text(
+                                                    "+${widget.badgesImages.length - hidedItems}",
+                                                    style: TextStyle(
+                                                      inherit: true,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: CirclesColors.grey,
+                                                    )
+                                                ),
+                                              );
+                                            return Image(
+                                              image: AssetImage(widget.badgesImages[index]),
+                                              height: 24,
+                                              width: 24,
+                                            );
+                                          }
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                    child: CRateBar(
+                                      itemSize: 18,
+                                      starsNumber: 3.2,
+                                      onRatingUpdate: (value){
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
+
                             ],
                           ),
-                          SizedBox(
-                            height: 30,
-                            child: Row(
-                              children: List.generate(
-                                  widget.badgesImages.length >
-                                  MediaQuery.of(context).size.width ~/1.8 ~/32
-                                      ? MediaQuery.of(context).size.width ~/1.8 ~/32 +1
-                                      : widget.badgesImages.length,
-                                      (index) {
-                                        int hidedItems = MediaQuery.of(context).size.width ~/1.8 ~/32;
-                                    if(index == hidedItems)
-                                      return Container(
-                                        padding: EdgeInsets.all(4),
-                                        decoration: BoxDecoration(
-                                          color: CirclesColors.yellow,
-                                          borderRadius: BorderRadius.circular(24),
-                                        ),
-                                        child: Text(
-                                            "+${widget.badgesImages.length - hidedItems}",
-                                            style: TextStyle(
-                                              inherit: true,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: CirclesColors.grey,
-                                            )
-                                        ),
-                                      );
-                                    return Image(
-                                      image: AssetImage(widget.badgesImages[index]),
-                                      height: 24,
-                                      width: 24,
-                                    );
-                                  }
+                        ),
+                        Container(
+                          width: 6,
+                          height: 100,
+                          padding: const EdgeInsets.all(8.0),
+                          margin: EdgeInsets.only(right: 10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8)
                               ),
-                            ),
+                              color:CirclesColors.yellow.withOpacity(1),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(.1),
+                                    spreadRadius: 2
+                                )
+                              ]
                           ),
-                          SizedBox(
-                            height: 30,
-                            child: CRateBar(
-                              itemSize: 18,
-                              starsNumber: 3.2,
-                              onRatingUpdate: (value){
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
 
@@ -178,7 +208,7 @@ class _PlaceItemState extends State<PlaceItem> with SingleTickerProviderStateMix
                   margin: EdgeInsets.all(8),
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(8),
                       color: Colors.black,
                       boxShadow: [
                         BoxShadow(
@@ -191,6 +221,7 @@ class _PlaceItemState extends State<PlaceItem> with SingleTickerProviderStateMix
                     child: Wrap(
                       runAlignment: WrapAlignment.spaceEvenly,
                       alignment:  WrapAlignment.spaceEvenly,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       spacing: 10,
                       runSpacing: 10,
                       children: [

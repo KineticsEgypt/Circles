@@ -11,7 +11,7 @@ class RecentEventItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(8),
                 child: Image(
                     image: AssetImage("assets/images/event2_test.jpg"),
                 ),

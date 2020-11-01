@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
           child: Opacity(
             opacity: .1,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
+              borderRadius: BorderRadius.circular(8),
               child: Image(
                 image: AssetImage("assets/images/test_profile_image.jpg"),
                 width: MediaQuery.of(context).size.width/1.3,
@@ -37,7 +37,7 @@ class ProfilePage extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(8),
                   child: Image(
                       image: AssetImage("assets/images/test_profile_image.jpg"),
                       width: MediaQuery.of(context).size.width/2.6,

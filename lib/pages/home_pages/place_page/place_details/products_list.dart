@@ -53,7 +53,7 @@ class _ProductsListState extends State<ProductsList> {
           ],
         ),
         AnimatedContainer(
-          duration: Duration(milliseconds: 600),
+          duration: Duration(milliseconds: 500),
           curve: Curves.easeInOut,
           height: widget.readMore
               ? widget.products.length % numberOfItemsInRow == 0

@@ -16,6 +16,14 @@ class CirclesTextStyles {
     fontFamily: "Gothic"
   );
 
+  static final TextStyle header5Black = TextStyle(
+      inherit: true,
+      fontSize: 24,
+      //fontWeight: FontWeight.bold,
+      color: Colors.black,
+      fontFamily: "Gothic"
+  );
+
   static final TextStyle header6 = TextStyle(
       inherit: true,
       fontSize: 18,
@@ -47,6 +55,19 @@ class CirclesTextStyles {
       fontFamily: "Gothic"
   );
 
+  static final TextStyle subTitle2 = TextStyle(
+      inherit: true,
+      fontSize: 14,
+      color: CirclesColors.yellow,
+      fontFamily: "Gothic"
+  );
+
+  static final TextStyle subTitle3 = TextStyle(
+      inherit: true,
+      fontSize: 14,
+      color: Colors.black,
+      fontFamily: "Gothic"
+  );
   static final TextStyle body1 = TextStyle(
       inherit: true,
       fontSize: 12,
@@ -54,13 +75,6 @@ class CirclesTextStyles {
       color: Colors.white,
       fontFamily: "Gothic",
 
-  );
-
-  static final TextStyle subTitle2 = TextStyle(
-      inherit: true,
-      fontSize: 14,
-      color: CirclesColors.yellow,
-      fontFamily: "Gothic"
   );
 
   static final TextStyle body2 = TextStyle(

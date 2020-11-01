@@ -26,7 +26,7 @@ class AvailableTimeItem extends StatelessWidget {
             key: ValueKey(isSelected),
             decoration: BoxDecoration(
               color: isSelected  ? CirclesColors.yellow : Colors.transparent,
-              borderRadius: BorderRadius.circular(100 * CirclesTextStyles.getScaleFactor(context)),
+              borderRadius: BorderRadius.circular(8 * CirclesTextStyles.getScaleFactor(context)),
               border: Border.all(color: CirclesColors.yellow)
             ),
             child: InkWell(

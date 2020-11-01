@@ -2,7 +2,7 @@ import 'package:circles/app_style/colors.dart';
 import 'package:circles/app_style/text_style.dart';
 import 'package:circles/controlers/providers/page_index_provider.dart';
 import 'package:circles/models/Badge.dart';
-import 'package:circles/models/Location.dart';
+import 'package:circles/models/location.dart';
 import 'package:circles/widgets/badges_picker.dart';
 import 'package:circles/widgets/buttons/c_button.dart';
 import 'package:circles/widgets/buttons/c_flat_button.dart';
@@ -41,7 +41,7 @@ class _HomeSearchState extends State<HomeSearch> {
             ? MediaQuery.of(context).size.height
             : 32,
         decoration: BoxDecoration(
-          color: CirclesColors.lightGrey,
+          color: CirclesColors.grey,
           borderRadius: BorderRadius.circular(_pageIndexProvider.searchIsOpen ? 0 : 64),
         ),
         child: AnimatedSwitcher(
@@ -79,21 +79,7 @@ class _HomeSearchState extends State<HomeSearch> {
                     ],
                   ),
                   SizedBox(height: 32,),
-                  Text(
-                      "Min Rate",
-                    style: CirclesTextStyles.header5,
-                    textScaleFactor: CirclesTextStyles.getScaleFactor(context),
-                  ),
-                  SizedBox(height: 8,),
-                  CRateBar(
-                    starsNumber: 3.5,
-                    itemSize: 24,
-                    ignoreGestures: false,
-                    tapOnlyMode: false,
-                    onRatingUpdate: (starsNumber){
-                    },
-                  ),
-                  SizedBox(height: 32,),
+
                   Row(
                     children: [
                       Expanded(
@@ -166,6 +152,21 @@ class _HomeSearchState extends State<HomeSearch> {
                   ),
                   SizedBox(height: 32,),
                   Text(
+                    "Min Rate",
+                    style: CirclesTextStyles.header5,
+                    textScaleFactor: CirclesTextStyles.getScaleFactor(context),
+                  ),
+                  SizedBox(height: 8,),
+                  CRateBar(
+                    starsNumber: 3.5,
+                    itemSize: 24,
+                    ignoreGestures: false,
+                    tapOnlyMode: false,
+                    onRatingUpdate: (starsNumber){
+                    },
+                  ),
+                  SizedBox(height: 32,),
+                  Text(
                     "Minimum Charge",
                     style: CirclesTextStyles.header5,
                     textScaleFactor: CirclesTextStyles.getScaleFactor(context),
@@ -182,8 +183,8 @@ class _HomeSearchState extends State<HomeSearch> {
                           runSpacing: 16,
                           children: [
                             CTextFormField(
-                              width: MediaQuery.of(context).size.width / 3 < 180
-                                  ? 180 : MediaQuery.of(context).size.width / 3,
+                              width: MediaQuery.of(context).size.width / 3 < 160
+                                  ? 160 : MediaQuery.of(context).size.width / 3,
                               textAlign: TextAlign.center,
                               prefixIcon: Text(
                                   "Min",
@@ -204,8 +205,8 @@ class _HomeSearchState extends State<HomeSearch> {
                               textInputType: TextInputType.number,
                             ),
                             CTextFormField(
-                              width: MediaQuery.of(context).size.width / 3 < 180
-                                  ? 180 : MediaQuery.of(context).size.width / 3,
+                              width: MediaQuery.of(context).size.width / 3 < 160
+                                  ? 160 : MediaQuery.of(context).size.width / 3,
                               textAlign: TextAlign.center,
                               prefixIcon: Text(
                                 "Max",
@@ -241,7 +242,7 @@ class _HomeSearchState extends State<HomeSearch> {
                         child: CButton(
                           text: "Apply",
                           onTap: (){},
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ],

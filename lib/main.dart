@@ -1,5 +1,6 @@
 import 'package:circles/app_style/colors.dart';
 import 'package:circles/controlers/providers/page_index_provider.dart';
+import 'package:circles/pages/home_pages/cinema_page/movie_details.dart';
 import 'package:circles/pages/home_pages/home.dart';
 import 'package:circles/pages/home_pages/place_page/place_details/place_detials_page.dart';
 import 'package:circles/pages/land_page.dart';
@@ -7,6 +8,7 @@ import 'package:circles/pages/splach_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'pages/home_pages/cinema_page/buy_cinema_ticket.dart';
 import 'pages/home_pages/place_page/reserve_page/researve_page.dart';
 
 void main() {
@@ -49,6 +51,8 @@ class MyApp extends StatelessWidget {
             LandPage.id: (_) => LandPage(),
             SplashPage.id: (_) => SplashPage(),
             ReservePage.id: (_) => ReservePage(),
+            MovieDetails.id: (_) => MovieDetails(),
+            BuyCinemaTicket.id: (_) => BuyCinemaTicket(),
           },
         ),
       ),

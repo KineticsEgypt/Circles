@@ -92,13 +92,16 @@ class _HomeState extends State<Home> {
                     turns: animation,
                   );
                 },
-                child: CIconButton(
-                  key: ValueKey(_pageIndexProvider.menuIsOpen),
-                  iconData:  _pageIndexProvider.menuIsOpen
-                      ? Icons.close : Icons.menu,
-                  onTap: (){
-                    _pageIndexProvider.menuIsOpen = !_pageIndexProvider.menuIsOpen;
-                  },
+                child: Hero(
+                  tag: "menu tag",
+                  child: CIconButton(
+                    key: ValueKey(_pageIndexProvider.menuIsOpen),
+                    iconData:  _pageIndexProvider.menuIsOpen
+                        ? Icons.close : Icons.menu,
+                    onTap: (){
+                      _pageIndexProvider.menuIsOpen = !_pageIndexProvider.menuIsOpen;
+                    },
+                  ),
                 ),
               ),
             ),

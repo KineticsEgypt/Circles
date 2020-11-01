@@ -12,9 +12,9 @@ class _PlacesListState extends State<PlacesList> {
   int _viewItemIndex = -1;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 10,
-        itemBuilder: (listContext,itemIndex){
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int itemIndex) {
           return PlaceItem(
             placeImage: "assets/images/test_image.png",
             index: _viewItemIndex == itemIndex ? 1 : 0,
@@ -53,7 +53,9 @@ class _PlacesListState extends State<PlacesList> {
               setState(() {});
             },
           );
-        }
+        },
+        childCount: 15
+      ),
     );
   }
 }
