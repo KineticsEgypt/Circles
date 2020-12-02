@@ -7,9 +7,7 @@ class PlacesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-
       children: [
-
         // places List
         Expanded(
           child:CustomScrollView(
