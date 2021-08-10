@@ -1,15 +1,20 @@
-import 'package:circles/app_style/colors.dart';
-import 'package:circles/controlers/providers/page_index_provider.dart';
-import 'package:circles/pages/home_pages/cinema_page/movie_details.dart';
-import 'package:circles/pages/home_pages/home.dart';
-import 'package:circles/pages/home_pages/place_page/place_details/place_detials_page.dart';
-import 'package:circles/pages/land_page.dart';
-import 'package:circles/pages/splach_page.dart';
+
+import 'package:circles/views/app_style/colors.dart';
+import 'package:circles/views/pages/home_pages/cinema_page/buy_cinema_ticket.dart';
+import 'package:circles/views/pages/home_pages/cinema_page/movie_details.dart';
+import 'package:circles/views/pages/home_pages/home.dart';
+import 'package:circles/views/pages/home_pages/place_page/place_details/place_detials_page.dart';
+import 'package:circles/views/pages/home_pages/place_page/reserve_page/researve_page.dart';
+import 'package:circles/views/pages/land_page.dart';
+import 'package:circles/views/pages/sign_in_pages/sign_in_page.dart';
+import 'package:circles/views/pages/sign_in_pages/sign_up_page.dart';
+import 'package:circles/views/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/home_pages/cinema_page/buy_cinema_ticket.dart';
-import 'pages/home_pages/place_page/reserve_page/researve_page.dart';
+import 'controlers/providers/widgets/page_index_provider.dart';
+import 'views/pages/place_owner/place_dashboard.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -32,21 +37,41 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Circles',
+          themeMode: ThemeMode.system,
           theme: ThemeData(
-            primaryColor: Colors.white,
-            accentColor: CirclesColors.yellow,
-            scaffoldBackgroundColor: Colors.black,
+            fontFamily: "Gothic",
+            scaffoldBackgroundColor: Colors.grey[100],
+            accentColor: AColors.golden,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            canvasColor: AColors.blue,
+            colorScheme: ColorScheme.light(
+              primary: Colors.white,
+              onPrimary: Colors.black,
+              secondary: AColors.lightBlue,
+              secondaryVariant: AColors.deepBlue,
+            ),
+          ),
+          darkTheme: ThemeData(
+            fontFamily: "Gothic",
+            accentColor: AColors.golden,
+            scaffoldBackgroundColor: Colors.grey[850],
             visualDensity: VisualDensity.adaptivePlatformDensity,
             brightness: Brightness.dark,
-            appBarTheme: AppBarTheme(
-              brightness: Brightness.light,
-              color: Colors.white,
+            canvasColor: Colors.grey[900],
+            colorScheme: ColorScheme.dark(
+              primary: Colors.white,
+              onPrimary: Colors.black,
+              secondary: Colors.grey[900],
+              onSecondary: Colors.white,
+              secondaryVariant: Colors.black,
             ),
-
           ),
-          initialRoute: LandPage.id,
+          initialRoute: SignInPage.id,
           routes: {
             Home.id: (_) => Home(),
+            SignInPage.id: (_) => SignInPage(),
+            SignUpPage.id: (_) => SignUpPage(),
+            PlaceDashboard.id: (_) => PlaceDashboard(),
             PlaceDetailsPage.id: (_) => PlaceDetailsPage(),
             LandPage.id: (_) => LandPage(),
             SplashPage.id: (_) => SplashPage(),
